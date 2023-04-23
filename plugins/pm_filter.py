@@ -1,4 +1,4 @@
-import asyncio, re, ast, math, logging, pyrogram
+import asyncio, re, ast, math, logging, pyrogram, os
 from pyrogram.errors.exceptions.bad_request_400 import MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty
 from Script import script
 from utils import get_shortlink 
@@ -10,6 +10,8 @@ from utils import get_size, is_subscribed, get_poster, search_gagala, temp, get_
 from database.users_chats_db import db
 from database.ia_filterdb import Media, get_file_details, get_search_results
 from plugins.group_filter import global_filters
+
+req_channel = int(os.environ.get('REQ_CHANNEL', '-1001862601820'))
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.ERROR)
@@ -124,7 +126,8 @@ async def pm_AutoFilter(client, msg, pmspoll=False):
         if 2 < len(message.text) < 100:
             search = message.text
             files, offset, total_results = await get_search_results(search.lower(), offset=0, filter=True)
-            if not files:               
+            if not files:
+                await client.send_message(req_channel, f"#REQUESTED_CONTENT \n\n**CONTENT NAME :**`{search}` \n\n**REQUESTED BY :** {message.from_user.first_name\n\n**USER_ID :** {message.from_user.id}", reply_makeup=InlineKeyboardMarkup([[InlineKeyboardButton("✅Mark as Done✅", callback_data="close_data")]]))
                 return await pm_spoll_choker(msg)              
         else:
             return 
