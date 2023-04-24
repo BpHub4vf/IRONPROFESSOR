@@ -85,7 +85,7 @@ PUBLIC_FILE_STORE = is_enabled((environ.get('PUBLIC_FILE_STORE', "False")), Fals
 #request force sub
 REQ_SUB = bool(environ.get("REQ_SUB", True))
 SESSION_STRING = environ.get("SESSION_STRING", "")
-
+REQ_CHANNEL = int(environ.get('REQ_CHANNEL'))
 
 
 
