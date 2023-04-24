@@ -16,6 +16,7 @@ req_channel = int(os.environ.get('REQ_CHANNEL', '-1001862601820'))
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.ERROR)
 
+req_channel = REQ_CHANNEL
 PM_BUTTONS = {}
 PM_SPELL_CHECK = {}
 
