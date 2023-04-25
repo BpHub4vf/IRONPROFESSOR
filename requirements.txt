@@ -9,6 +9,8 @@ aiohttp==3.8.3
 tgcrypto==1.2.5
 requests==2.28.2
 bs4==0.0.1
+pynewtonmath
+dnspython
 
 #---database---#
 pymongo[srv]==3.12.3
